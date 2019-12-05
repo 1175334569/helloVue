@@ -40,16 +40,19 @@
         methods:{
             summitClick:function () {
                 this.loading=true;
-                Axios.post('http://localhost/login',{username:this.user.username,password:this.user.password}).then(
+                Axios.post('http://localhost/login',{"username":this.user.username,"password":this.user.password}).then(
                     res=>{
                         this.loading=false;
-                        this.$router.replace({path:'/home'});
-                        return res;
+                        if(res.data===""){
+                            alert("帐号密码错误");
+                        }else {
+                            this.$router.replace({path:'/home'});
+                        }
                     }
                 ).catch(
                     res=>{
                         window.console.log(res);
-                        alert("帐号密码错误");
+                        alert("服务器出差了。。。");
                         this.loading=false;
                     }
                 );

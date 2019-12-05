@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../components/Login'
-import Test from '../components/Test'
+import Home from '../components/Home'
 Vue.use(Router);
 
 export default new Router({
@@ -13,7 +13,29 @@ export default new Router({
         },{
             path:'/home',
             name:'',
-            component:Test,
+            component:Home,
+        }, {
+            path: '/home',
+            component: Home,
+            name: '文章管理',
+            iconCls: 'fa fa-file-text-o',
+            children: [
+                {
+                    path: '/articleList',
+                    name: '文章列表',
+                    component: Home,
+                    meta: {
+                        keepAlive: true
+                    }
+                }, {
+                    path: '/postArticle',
+                    name: '发表文章',
+                    component: Home,
+                    meta: {
+                        keepAlive: false
+                    }
+                }
+                ]
         }
     ]
 })
