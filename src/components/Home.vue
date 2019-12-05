@@ -9,25 +9,24 @@
                                 default-active="2"
                                 class="el-menu-vertical-demo"
                                 @open="handleOpen"
-                                @close="handleClose">
-                            <el-submenu index="1">
-                                <template slot="title">
-                                    <i class="el-icon-location"></i>
-                                    <span>导航一</span>
+                                @close="handleClose" router="true">
+                            <template v-for="item in this.$router.options.routes">
+                                <template v-if="item.navMenu">
+                                    <template v-for="(itemChildren,index) in item.children">
+                                        <el-submenu :index="index" :key="index">
+                                        <template slot="title">
+                                            <i class="el-icon-location"></i>
+                                            <span>{{itemChildren.name}}</span>
+                                        </template>
+                                            <el-menu-item-group>
+                                                <template v-for="(itemcc,index) in itemChildren.children">
+                                                    <el-menu-item :key="index" :index="itemcc.path">{{itemcc.name}}</el-menu-item>
+                                                </template>
+                                            </el-menu-item-group>
+                                        </el-submenu>
+                                    </template>
                                 </template>
-                                <el-menu-item-group>
-                                    <template slot="title">分组一</template>
-                                    <el-menu-item index="1-1">选项1</el-menu-item>
-                                    <el-menu-item index="1-2">选项2</el-menu-item>
-                                </el-menu-item-group>
-                                <el-menu-item-group title="分组2">
-                                    <el-menu-item index="1-3">选项3</el-menu-item>
-                                </el-menu-item-group>
-                                <el-submenu index="1-4">
-                                    <template slot="title">选项4</template>
-                                    <el-menu-item index="1-4-1">选项1</el-menu-item>
-                                </el-submenu>
-                            </el-submenu>
+                            </template>
                         </el-menu>
                     </el-col>
                 </el-row>
