@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import Axios from 'axios'
+    import axios from "axios";
 
     export default {
         name: "Login",
@@ -40,7 +40,7 @@
         methods:{
             summitClick:function () {
                 this.loading=true;
-                Axios.post('http://localhost/login',{"username":this.user.username,"password":this.user.password}).then(
+                axios.post('/login',{"username":this.user.username,"password":this.user.password}).then(
                     res=>{
                         this.loading=false;
                         if(res.data===""){

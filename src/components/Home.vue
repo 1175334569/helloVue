@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-header>Header</el-header>
+        <el-header>写点什么</el-header>
         <el-container>
             <template>
                 <el-row class="tac" style="width:20%">
@@ -10,35 +10,28 @@
                                 class="el-menu-vertical-demo"
                                 @open="handleOpen"
                                 @close="handleClose" router="true">
-                            <template v-for="item in this.$router.options.routes">
+                            <template v-for="(item,index) in this.$router.options.routes">
                                 <template v-if="item.navMenu">
-                                    <template v-for="(itemChildren,index) in item.children">
-                                        <el-submenu :index="index" :key="index">
-                                        <template slot="title">
-                                            <i class="el-icon-location"></i>
-                                            <span>{{itemChildren.name}}</span>
-                                        </template>
-                                            <el-menu-item-group>
-                                                <template v-for="(itemcc,index) in itemChildren.children">
-                                                    <el-menu-item :key="index" :index="itemcc.path">{{itemcc.name}}</el-menu-item>
-                                                </template>
-                                            </el-menu-item-group>
-                                        </el-submenu>
+                                    <el-submenu :index="index" :key="index">
+                                    <template slot="title">
+                                        <i class="el-icon-location"></i>
+                                        <span>{{item.name}}</span>
                                     </template>
+                                        <el-menu-item-group>
+                                            <template v-for="(itemC,index) in item.children">
+                                                <el-menu-item :key="index" :index="itemC.path">{{itemC.name}}</el-menu-item>
+                                            </template>
+                                        </el-menu-item-group>
+                                    </el-submenu>
                                 </template>
                             </template>
                         </el-menu>
                     </el-col>
                 </el-row>
             </template>
-            <el-main>Main</el-main>
-            <template>
-                <div>
-                    <ul v-for="(item,index) in this.$router.options.routes" :key="index">
-                        <li>{{item.name}}</li>
-                    </ul>
-                </div>
-            </template>
+            <el-main style="background-color: white">
+                <router-view></router-view>
+            </el-main>
         </el-container>
     </el-container>
 </template>
