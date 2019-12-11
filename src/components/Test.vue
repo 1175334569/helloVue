@@ -5,6 +5,7 @@
         </ul>
         <el-row>
             <el-button type="primary" plain>提交</el-button>
+            <el-alert>提价</el-alert>
         </el-row>
     </div>
 </template>
