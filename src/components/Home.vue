@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+    <el-container class="home_container">
         <el-header>写点什么</el-header>
         <el-container>
             <template>
@@ -7,20 +7,16 @@
                     <el-col>
                         <el-menu
                                 default-active="2"
-                                class="el-menu-vertical-demo"
-                                @open="handleOpen"
-                                @close="handleClose" router="true">
+                                class="el-menu-vertical-demo" router>
                             <template v-for="(item,index) in this.$router.options.routes">
-                                <template v-if="item.navMenu">
-                                    <el-submenu :index="index" :key="index">
-                                    <template slot="title">
-                                        <i class="el-icon-location"></i>
-                                        <span>{{item.name}}</span>
-                                    </template>
-                                        <el-menu-item-group>
-                                            <template v-for="(itemC,index) in item.children">
-                                                <el-menu-item :key="index" :index="itemC.path">{{itemC.name}}</el-menu-item>
+                                <template v-if="!item.hidden">
+                                    <el-submenu :index="index.toString()" :key="index">
+                                            <template slot="title">
+                                                <i class="el-icon-location"></i>
+                                                <span>{{item.name}}</span>
                                             </template>
+                                        <el-menu-item-group v-for="(item_children,index) in item.children" :key="index">
+                                            <el-menu-item :index="item_children.path">{{item_children.name}}</el-menu-item>
                                         </el-menu-item-group>
                                     </el-submenu>
                                 </template>
@@ -29,16 +25,21 @@
                     </el-col>
                 </el-row>
             </template>
-            <el-main style="background-color: white">
-                <router-view></router-view>
-            </el-main>
+            <el-container>
+                <el-main style="background-color: white">
+                    <router-view></router-view>
+                </el-main>
+            </el-container>
         </el-container>
     </el-container>
 </template>
 
 <script>
     export default {
-        name: "Home"
+        name: "Home",
+        mounted() {
+            window.console.log(this.$route.name);
+        }
     }
 </script>
 
@@ -75,5 +76,12 @@
 
     .el-container:nth-child(7) .el-aside {
         line-height: 320px;
+    }
+    .home_container {
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
     }
 </style>

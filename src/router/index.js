@@ -11,14 +11,15 @@ export default new Router({
         {
             path: '/',
             name: '登录',
-            component: Login,
+            hidden: true,
+            component: Login
         }, {
             path: '/home',
             name: '',
             component: Home,
+            hidden: true
         }, {
             path: '/home',
-            navMenu:true,
             component: Home,
             name: '文章管理',
             iconCls: 'fa fa-file-text-o',
@@ -57,7 +58,6 @@ export default new Router({
             ]
         }, {
             path: '/home',
-            navMenu:true,
             component: Home,
             name: '用户管理',
             children: [
@@ -70,7 +70,6 @@ export default new Router({
             ]
         }, {
             path: '/home',
-            navMenu:true,
             component: Home,
             name: '栏目管理',
             children: [
@@ -83,7 +82,6 @@ export default new Router({
             ]
         }, {
             path: '/home',
-            navMenu:true,
             component: Home,
             name: '数据统计',
             iconCls: 'fa fa-bar-chart',

@@ -3,7 +3,7 @@
             :data="tableData"
             style="width: 100%">
         <el-table-column
-                label="日期"
+                label="标题"
                 width="180">
             <template slot-scope="scope">
                 <i class="el-icon-time"></i>
